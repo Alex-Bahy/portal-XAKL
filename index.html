@@ -40,7 +40,6 @@ body {
   min-height: 100vh;
 }
 
-/* ─── HERO ─── */
 .hero {
   background: var(--navy);
   position: relative;
@@ -59,7 +58,6 @@ body {
                     repeating-linear-gradient(0deg,  #fff 0,#fff 1px,transparent 0,transparent 60px);
 }
 
-/* nav */
 .nav {
   display: flex; align-items: center; justify-content: space-between;
   padding: 18px 48px;
@@ -81,7 +79,6 @@ body {
   border-radius: 20px; letter-spacing: .04em;
 }
 
-/* hero body */
 .hero-body {
   position: relative; z-index: 2;
   text-align: center;
@@ -112,7 +109,6 @@ body {
   line-height: 1.75; max-width: 480px; margin: 0 auto 52px;
 }
 
-/* stats */
 .stats {
   display: inline-flex; border-radius: 18px; overflow: hidden;
   border: 1px solid rgba(255,255,255,.09);
@@ -124,14 +120,11 @@ body {
 .stat-n b { color: var(--gold3); font-weight: 800; }
 .stat-l { font-size: 11px; font-weight: 500; color: rgba(255,255,255,.38); text-transform: uppercase; letter-spacing: .06em; margin-top: 4px; }
 
-/* wave */
 .wave { line-height: 0; position: relative; z-index: 2; }
 .wave svg { display: block; width: 100%; }
 
-/* ─── SECTION WRAPPER ─── */
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
 
-/* ─── SECTION HEADER ─── */
 .sec { padding: 64px 0 0; }
 .sec-last { padding-bottom: 80px; }
 .sec-head { margin-bottom: 40px; }
@@ -150,7 +143,6 @@ body {
 }
 .sec-desc { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 520px; }
 
-/* ─── DATA SISWA HERO CARD ─── */
 .data-hero {
   background: linear-gradient(130deg, var(--navy2) 0%, var(--navy3) 60%, #253F85 100%);
   border-radius: var(--r2);
@@ -216,7 +208,6 @@ body {
 .btn-data:hover { transform: translateY(-2px); opacity: .92; }
 .btn-data svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-/* ─── GROUP DIVIDER ─── */
 .group-div {
   display: flex; align-items: center; gap: 12px;
   font-size: 11px; font-weight: 700; letter-spacing: .10em;
@@ -230,14 +221,12 @@ body {
   font-size: 13px; flex-shrink: 0;
 }
 
-/* ─── SUBJECT GRID ─── */
 .subj-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   gap: 14px;
 }
 
-/* ─── SUBJECT CARD ─── */
 .subj-card {
   background: var(--surface);
   border: 1.5px solid var(--border);
@@ -300,7 +289,6 @@ body {
 .badge-off { background: #FEF3C7; color: #92400E; }
 .badge-todo { background: #FEE2E2; color: #991B1B; }
 
-/* ─── MODAL OVERLAY ─── */
 #modal {
   position: fixed; inset: 0; z-index: 200;
   background: rgba(8,14,30,.72);
@@ -387,7 +375,6 @@ body {
   0%,100%{transform:translateX(0)} 25%{transform:translateX(-7px)} 75%{transform:translateX(7px)}
 }
 
-/* ─── FOOTER ─── */
 footer {
   background: var(--navy);
   padding: 36px 48px;
@@ -398,7 +385,6 @@ footer {
 }
 footer strong { color: rgba(255,255,255,.60); }
 
-/* ─── RESPONSIVE ─── */
 @media(max-width:700px){
   .nav  { padding: 14px 20px; }
   .hero-body { padding: 48px 20px 40px; }
@@ -414,13 +400,13 @@ footer strong { color: rgba(255,255,255,.60); }
 </head>
 <body>
 
-<!-- ══ MODAL PASSWORD DATA SISWA ══ -->
+<!-- MODAL PASSWORD DATA SISWA -->
 <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()" aria-label="Tutup">✕</button>
     <div class="modal-icon">🗂️</div>
     <div class="modal-title" id="modalTitle">Akses Wali Kelas</div>
-    <div class="modal-sub">Halaman Data Siswa khusus untuk Wali Kelas.<br>Masukkan kata sandi untuk melanjutkan.</div>
+    <div class="modal-sub">Halaman ini digunakan Wali Kelas untuk menginput dan mengelola data siswa.<br>Masukkan kata sandi untuk melanjutkan.</div>
     <div class="modal-label">Kata Sandi Wali Kelas</div>
     <div class="modal-inp-wrap">
       <input type="password" id="pwInput" class="modal-inp" placeholder="Masukkan kata sandi…"
@@ -432,7 +418,7 @@ footer strong { color: rgba(255,255,255,.60); }
   </div>
 </div>
 
-<!-- ══ HERO ══ -->
+<!-- HERO -->
 <header class="hero">
   <div class="hero-glow"></div>
   <div class="hero-lines"></div>
@@ -457,7 +443,7 @@ footer strong { color: rgba(255,255,255,.60); }
       Nilai &amp; Rekap<br><em>Kelas X AKL</em>
     </h1>
     <p class="hero-sub">
-      Akses nilai mata pelajaran, data siswa, dan rekap akademik kelas X Akuntansi &amp; Keuangan Lembaga — tersedia untuk semua guru.
+      Platform input dan rekap nilai mata pelajaran untuk semua guru, serta pengelolaan data siswa khusus Wali Kelas — Kelas X Akuntansi &amp; Keuangan Lembaga.
     </p>
     <div class="stats">
       <div class="stat">
@@ -482,7 +468,7 @@ footer strong { color: rgba(255,255,255,.60); }
   </div>
 </header>
 
-<!-- ══ MAIN ══ -->
+<!-- MAIN -->
 <main>
 <div class="wrap">
 
@@ -491,20 +477,20 @@ footer strong { color: rgba(255,255,255,.60); }
     <div class="sec-head">
       <div class="sec-tag tag-gold">🗂 Data Administrasi</div>
       <h2 class="sec-title">Data Siswa Kelas X AKL</h2>
-      <p class="sec-desc">Daftar lengkap siswa, profil, dan data administrasi kelas. Khusus diakses oleh Wali Kelas dengan kata sandi.</p>
+      <p class="sec-desc">Halaman khusus Wali Kelas untuk menginput dan mengelola data siswa — meliputi profil, absensi, dan catatan administratif kelas.</p>
     </div>
 
     <div class="data-hero">
       <div class="data-hero-text">
-        <div class="data-hero-badge">🔐 Akses Wali Kelas</div>
+        <div class="data-hero-badge">🔐 Input Data — Wali Kelas</div>
         <div class="data-hero-title">Database Siswa<br>X AKL 2025/2026</div>
-        <div class="data-hero-sub">Berisi data lengkap seluruh siswa kelas X Akuntansi &amp; Keuangan Lembaga — profil, absensi, dan catatan administratif.</div>
+        <div class="data-hero-sub">Wali Kelas dapat menginput dan memperbarui data lengkap seluruh siswa — termasuk profil, absensi, dan catatan administratif.</div>
         <button class="btn-data" onclick="openModal()">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="12" height="8" rx="2"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>
           Buka Data Siswa
         </button>
         <div class="data-hero-note" style="margin-left:12px;display:inline-flex;">
-          🔑 Memerlukan kata sandi wali kelas
+          🔑 Khusus Wali Kelas — diperlukan kata sandi
         </div>
       </div>
       <div class="data-hero-visual">
@@ -519,7 +505,7 @@ footer strong { color: rgba(255,255,255,.60); }
     <div class="sec-head">
       <div class="sec-tag tag-blue">📚 Kurikulum Merdeka</div>
       <h2 class="sec-title">Nilai Mata Pelajaran</h2>
-      <p class="sec-desc">Klik "Lihat Nilai" untuk mengakses rekap nilai tiap mata pelajaran. Dapat diakses oleh semua guru.</p>
+      <p class="sec-desc">Setiap guru dapat membuka halaman nilai sesuai mata pelajaran yang diampu untuk menginput dan memantau rekap nilai siswa.</p>
     </div>
 
     <!-- GROUP UMUM -->
@@ -529,7 +515,6 @@ footer strong { color: rgba(255,255,255,.60); }
     </div>
     <div class="subj-grid">
 
-      <!-- 1 -->
       <div class="subj-card card-u">
         <div class="card-row">
           <div class="card-num">01</div>
@@ -539,16 +524,14 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-01: Ganti href="#" dengan link nilai Pendidikan Agama -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-off">Segera</span>
         </div>
       </div>
 
-      <!-- 2 -->
       <div class="subj-card card-u">
         <div class="card-row">
           <div class="card-num">02</div>
@@ -558,16 +541,14 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-02: Ganti href="#" dengan link nilai Pendidikan Pancasila -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-off">Segera</span>
         </div>
       </div>
 
-      <!-- 3 -->
       <div class="subj-card card-u">
         <div class="card-row">
           <div class="card-num">03</div>
@@ -577,16 +558,14 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-03: Ganti href="#" dengan link nilai Bahasa Indonesia -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-off">Segera</span>
         </div>
       </div>
 
-      <!-- 4 -->
       <div class="subj-card card-u">
         <div class="card-row">
           <div class="card-num">04</div>
@@ -596,16 +575,14 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-04: Ganti href="#" dengan link nilai PJOK -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-off">Segera</span>
         </div>
       </div>
 
-      <!-- 5 -->
       <div class="subj-card card-u">
         <div class="card-row">
           <div class="card-num">05</div>
@@ -615,16 +592,14 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-05: Ganti href="#" dengan link nilai Sejarah -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-off">Segera</span>
         </div>
       </div>
 
-      <!-- 6 -->
       <div class="subj-card card-u">
         <div class="card-row">
           <div class="card-num">06</div>
@@ -634,16 +609,15 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-06: Ganti href="#" dengan link nilai Seni Budaya -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-off">Segera</span>
         </div>
       </div>
 
-    </div><!-- /subj-grid umum -->
+    </div>
 
     <!-- GROUP KEJURUAN -->
     <div class="group-div">
@@ -652,7 +626,6 @@ footer strong { color: rgba(255,255,255,.60); }
     </div>
     <div class="subj-grid">
 
-      <!-- 7 -->
       <div class="subj-card card-k">
         <div class="card-row">
           <div class="card-num">07</div>
@@ -662,16 +635,15 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-07: Ganti href="#" dengan link nilai Matematika -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-off">Segera</span>
         </div>
       </div>
 
-      <!-- 8 — AKTIF -->
+      <!-- 08 — AKTIF -->
       <div class="subj-card card-k">
         <div class="card-row">
           <div class="card-num">08</div>
@@ -683,13 +655,12 @@ footer strong { color: rgba(255,255,255,.60); }
         <div class="card-foot">
           <a href="https://alex-bahy.github.io/daftar-nilai-BING-XAKL/" target="_blank" rel="noopener" class="link-btn link-on">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-on">Aktif ✓</span>
         </div>
       </div>
 
-      <!-- 9 -->
       <div class="subj-card card-k">
         <div class="card-row">
           <div class="card-num">09</div>
@@ -699,16 +670,14 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-09: Ganti href="#" dengan link nilai Informatika -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-off">Segera</span>
         </div>
       </div>
 
-      <!-- 10 -->
       <div class="subj-card card-k">
         <div class="card-row">
           <div class="card-num">10</div>
@@ -718,16 +687,14 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-10: Ganti href="#" dengan link nilai P5 / IPAS -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-off">Segera</span>
         </div>
       </div>
 
-      <!-- 11 -->
       <div class="subj-card card-k">
         <div class="card-row">
           <div class="card-num">11</div>
@@ -737,16 +704,15 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-11: Ganti href="#" dengan link nilai Dasar-dasar Program Keahlian -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-            Lihat Nilai
+            Input Nilai
           </a>
           <span class="badge badge-off">Segera</span>
         </div>
       </div>
 
-    </div><!-- /subj-grid kejuruan -->
+    </div>
 
     <!-- GROUP LEDGER -->
     <div class="group-div">
@@ -755,7 +721,6 @@ footer strong { color: rgba(255,255,255,.60); }
     </div>
     <div class="subj-grid">
 
-      <!-- 12 — LEDGER -->
       <div class="subj-card card-l">
         <div class="card-row">
           <div class="card-num">12</div>
@@ -765,7 +730,6 @@ footer strong { color: rgba(255,255,255,.60); }
           </div>
         </div>
         <div class="card-foot">
-          <!-- TODO-LINK-12: Ganti href="#" dengan link Ledger Nilai -->
           <a href="#" class="link-btn link-off">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Buka Ledger
@@ -774,17 +738,17 @@ footer strong { color: rgba(255,255,255,.60); }
         </div>
       </div>
 
-    </div><!-- /subj-grid ledger -->
+    </div>
 
   </section>
-</div><!-- /wrap -->
+</div>
 </main>
 
 <!-- FOOTER -->
 <footer>
   <strong>Kelas X Akuntansi &amp; Keuangan Lembaga</strong><br>
   Portal Akademik Guru · Tahun Pelajaran 2025/2026<br>
-  <span style="font-size:12px;opacity:.5;">Data Siswa — akses terbatas Wali Kelas · Nilai Mapel — terbuka untuk semua guru</span>
+  <span style="font-size:12px;opacity:.5;">Data Siswa — input &amp; kelola oleh Wali Kelas · Input Nilai — terbuka untuk semua guru mata pelajaran</span>
 </footer>
 
 <script>
@@ -824,17 +788,14 @@ function tryUnlock() {
   }
 }
 
-// Close on backdrop click
 document.getElementById('modal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
 
-// Close on Escape
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
 });
 
-// Card entrance animation
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
