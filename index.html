@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Akademik — X Akuntansi & Keuangan Lembaga</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --navy:    #0C1A3A;
+  --navy2:   #162B5C;
+  --navy3:   #1F3D80;
+  --gold:    #C8932A;
+  --gold2:   #E8B44A;
+  --gold3:   #F5D98B;
+  --teal:    #0F7B61;
+  --teal2:   #14A881;
+  --teal-bg: #E0F5EF;
+  --rose:    #B83A5A;
+  --rose-bg: #FDEAF0;
+  --sky:     #1A6FB5;
+  --sky-bg:  #E5F1FC;
+  --amber:   #A05E10;
+  --amber-bg:#FEF3DA;
+  --bg:      #F4F2EC;
+  --surface: #FFFFFF;
+  --border:  rgba(12,26,58,0.10);
+  --text:    #0C1A3A;
+  --muted:   #6474A0;
+  --r:       14px;
+  --r2:      20px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 70% at 85% -10%, rgba(200,147,42,0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 50% at 5%  90%, rgba(15,123,97,0.16)  0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 110%, rgba(26,111,181,0.14) 0%, transparent 60%);
+}
+.hero-lines {
+  position: absolute; inset: 0; pointer-events: none; opacity: .04;
+  background-image: repeating-linear-gradient(90deg,#fff 0,#fff 1px,transparent 0,transparent 60px),
+                    repeating-linear-gradient(0deg,  #fff 0,#fff 1px,transparent 0,transparent 60px);
+}
+
+/* nav */
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  position: relative; z-index: 2;
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; }
+.nav-logo {
+  width: 42px; height: 42px; border-radius: 11px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 15px; color: var(--navy); letter-spacing: -.5px;
+}
+.nav-school { color: rgba(255,255,255,.9); font-size: 14px; font-weight: 600; line-height: 1.3; }
+.nav-school span { display: block; font-size: 12px; font-weight: 400; color: rgba(255,255,255,.45); }
+.nav-year {
+  background: rgba(200,147,42,.18); border: 1px solid rgba(200,147,42,.35);
+  color: var(--gold3); font-size: 12px; font-weight: 700; padding: 6px 14px;
+  border-radius: 20px; letter-spacing: .04em;
+}
+
+/* hero body */
+.hero-body {
+  position: relative; z-index: 2;
+  text-align: center;
+  padding: 72px 48px 56px;
+  max-width: 800px; margin: 0 auto;
+}
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13);
+  color: rgba(255,255,255,.65); font-size: 12px; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 20px; margin-bottom: 26px;
+}
+.hero-pill-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold2); flex-shrink: 0;
+}
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(38px, 5.5vw, 66px);
+  font-weight: 800; color: #fff;
+  line-height: 1.08; letter-spacing: -1.5px;
+  margin-bottom: 18px;
+}
+.hero-title em { font-style: normal; color: var(--gold3); }
+.hero-sub {
+  font-size: 16px; color: rgba(255,255,255,.52);
+  line-height: 1.75; max-width: 480px; margin: 0 auto 52px;
+}
+
+/* stats */
+.stats {
+  display: inline-flex; border-radius: 18px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.09);
+  background: rgba(255,255,255,.055);
+}
+.stat { padding: 20px 32px; text-align: center; border-right: 1px solid rgba(255,255,255,.08); }
+.stat:last-child { border-right: none; }
+.stat-n { font-size: 28px; font-weight: 800; color: #fff; line-height: 1; }
+.stat-n b { color: var(--gold3); font-weight: 800; }
+.stat-l { font-size: 11px; font-weight: 500; color: rgba(255,255,255,.38); text-transform: uppercase; letter-spacing: .06em; margin-top: 4px; }
+
+/* wave */
+.wave { line-height: 0; position: relative; z-index: 2; }
+.wave svg { display: block; width: 100%; }
+
+/* ─── SECTION WRAPPER ─── */
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+
+/* ─── SECTION HEADER ─── */
+.sec { padding: 64px 0 0; }
+.sec-last { padding-bottom: 80px; }
+.sec-head { margin-bottom: 40px; }
+.sec-tag {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  padding: 5px 13px; border-radius: 20px; margin-bottom: 12px;
+}
+.tag-blue  { background: var(--sky-bg);   color: var(--sky);  }
+.tag-teal  { background: var(--teal-bg);  color: var(--teal); }
+.tag-gold  { background: var(--amber-bg); color: var(--amber);}
+.sec-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(24px, 3vw, 36px); font-weight: 800;
+  color: var(--navy); line-height: 1.15; margin-bottom: 8px;
+}
+.sec-desc { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 520px; }
+
+/* ─── DATA SISWA HERO CARD ─── */
+.data-hero {
+  background: linear-gradient(130deg, var(--navy2) 0%, var(--navy3) 60%, #253F85 100%);
+  border-radius: var(--r2);
+  padding: 40px 44px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.data-hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 55% 90% at 100% 50%, rgba(200,147,42,.18) 0%, transparent 65%);
+}
+.data-hero-text { position: relative; z-index: 1; }
+.data-hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(200,147,42,.20); border: 1px solid rgba(200,147,42,.35);
+  color: var(--gold3); font-size: 11px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 20px; margin-bottom: 14px;
+}
+.data-hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: 26px; font-weight: 800; color: #fff;
+  line-height: 1.2; margin-bottom: 8px;
+}
+.data-hero-sub {
+  font-size: 14px; color: rgba(255,255,255,.50); line-height: 1.65; margin-bottom: 22px;
+}
+.data-hero-note {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px; padding: 8px 14px;
+  font-size: 12px; color: rgba(255,255,255,.55); font-weight: 500;
+}
+.data-hero-visual {
+  position: relative; z-index: 1;
+  width: 160px; height: 160px; flex-shrink: 0;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 22px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 6px;
+}
+.data-hero-visual .big-icon { font-size: 52px; line-height: 1; }
+.data-hero-visual .vis-label {
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,.40);
+  text-transform: uppercase; letter-spacing: .08em;
+}
+.btn-data {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+  color: var(--navy); font-size: 14px; font-weight: 800;
+  padding: 13px 26px; border-radius: 12px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: transform .15s, opacity .15s;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  margin-top: 0;
+}
+.btn-data:hover { transform: translateY(-2px); opacity: .92; }
+.btn-data svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ─── GROUP DIVIDER ─── */
+.group-div {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 11px; font-weight: 700; letter-spacing: .10em;
+  text-transform: uppercase; color: var(--muted);
+  margin: 40px 0 18px;
+}
+.group-div::after { content:''; flex:1; height:1px; background: var(--border); }
+.group-div-icon {
+  width: 26px; height: 26px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; flex-shrink: 0;
+}
+
+/* ─── SUBJECT GRID ─── */
+.subj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 14px;
+}
+
+/* ─── SUBJECT CARD ─── */
+.subj-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px 20px 16px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; overflow: hidden;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.subj-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(12,26,58,.09);
+  border-color: rgba(12,26,58,.18);
+}
+.subj-card::after {
+  content: ''; position: absolute; top:0; left:0; right:0; height:3px;
+}
+.card-u::after { background: linear-gradient(90deg, var(--sky), #4A90D9); }
+.card-k::after { background: linear-gradient(90deg, var(--teal), var(--teal2)); }
+.card-l::after { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
+
+.card-row { display: flex; align-items: flex-start; gap: 13px; }
+
+.card-num {
+  width: 34px; height: 34px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; flex-shrink: 0;
+}
+.card-u .card-num { background: var(--sky-bg);   color: var(--sky);   }
+.card-k .card-num { background: var(--teal-bg);  color: var(--teal);  }
+.card-l .card-num { background: var(--amber-bg); color: var(--amber); }
+
+.card-info { flex:1; min-width: 0; }
+.card-name { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.35; margin-bottom: 3px; }
+.card-type { font-size: 11px; font-weight: 600; letter-spacing: .04em; }
+.card-u .card-type { color: #5588CC; }
+.card-k .card-type { color: var(--teal); }
+.card-l .card-type { color: var(--gold); }
+
+.card-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+
+.link-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 15px; border-radius: 9px;
+  font-size: 12px; font-weight: 700; text-decoration: none;
+  letter-spacing: .01em;
+  transition: transform .15s, opacity .15s;
+}
+.link-btn:hover { transform: translateY(-1px); opacity: .85; }
+.link-on  { background: var(--navy); color: #fff; }
+.link-off { background: #F0F0F0; color: #AAAAAA; pointer-events: none; cursor: not-allowed; }
+
+.link-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+.badge {
+  font-size: 10px; font-weight: 700; padding: 3px 9px;
+  border-radius: 7px; letter-spacing: .04em; text-transform: uppercase;
+}
+.badge-on  { background: #DCFCE7; color: #166534; }
+.badge-off { background: #FEF3C7; color: #92400E; }
+.badge-todo { background: #FEE2E2; color: #991B1B; }
+
+/* ─── MODAL OVERLAY ─── */
+#modal {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(8,14,30,.72);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s;
+}
+#modal.open { opacity: 1; pointer-events: all; }
+
+.modal-box {
+  background: #fff;
+  border-radius: 22px;
+  padding: 40px 36px 32px;
+  max-width: 400px; width: 90%;
+  text-align: center;
+  transform: scale(.93) translateY(12px);
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+  position: relative;
+}
+#modal.open .modal-box { transform: scale(1) translateY(0); }
+
+.modal-close {
+  position: absolute; top:14px; right:16px;
+  background: none; border: none; cursor: pointer;
+  font-size: 20px; color: #AAA; line-height: 1;
+}
+.modal-close:hover { color: #555; }
+
+.modal-icon {
+  width: 64px; height: 64px; border-radius: 18px; margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy3) 100%);
+  display: flex; align-items: center; justify-content: center; font-size: 28px;
+}
+.modal-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 6px;
+}
+.modal-sub {
+  font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 26px;
+}
+.modal-label {
+  text-align: left; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
+  margin-bottom: 8px;
+}
+.modal-inp-wrap { position: relative; margin-bottom: 16px; }
+.modal-inp {
+  width: 100%;
+  border: 1.5px solid #DDE2EE;
+  border-radius: 11px;
+  padding: 13px 44px 13px 16px;
+  font-size: 16px; letter-spacing: .06em;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--navy); outline: none;
+  transition: border-color .2s;
+}
+.modal-inp:focus { border-color: var(--navy2); }
+.modal-inp::placeholder { letter-spacing: 0; color: #BBB; font-size: 14px; }
+
+.modal-eye {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; font-size: 18px;
+  color: #CCC; transition: color .2s;
+}
+.modal-eye:hover { color: #888; }
+
+.modal-btn {
+  width: 100%; background: linear-gradient(135deg, var(--navy) 0%, var(--navy3) 100%);
+  border: none; border-radius: 11px; padding: 14px;
+  font-size: 14px; font-weight: 800; color: #fff; cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: transform .15s, opacity .15s;
+}
+.modal-btn:hover { transform: translateY(-1px); opacity: .92; }
+
+.modal-err {
+  margin-top: 12px; font-size: 12px; color: #DC2626;
+  display: none; animation: shake .35s ease;
+}
+.modal-err.show { display: block; }
+
+@keyframes shake {
+  0%,100%{transform:translateX(0)} 25%{transform:translateX(-7px)} 75%{transform:translateX(7px)}
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--navy);
+  padding: 36px 48px;
+  text-align: center;
+  color: rgba(255,255,255,.30);
+  font-size: 13px;
+  line-height: 1.9;
+}
+footer strong { color: rgba(255,255,255,.60); }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:700px){
+  .nav  { padding: 14px 20px; }
+  .hero-body { padding: 48px 20px 40px; }
+  .wrap { padding: 0 20px; }
+  .stats { flex-direction: column; }
+  .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .stat:last-child { border-bottom: none; }
+  .data-hero { grid-template-columns: 1fr; }
+  .data-hero-visual { display: none; }
+  footer { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ MODAL PASSWORD DATA SISWA ══ -->
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Tutup">✕</button>
+    <div class="modal-icon">🗂️</div>
+    <div class="modal-title" id="modalTitle">Akses Wali Kelas</div>
+    <div class="modal-sub">Halaman Data Siswa khusus untuk Wali Kelas.<br>Masukkan kata sandi untuk melanjutkan.</div>
+    <div class="modal-label">Kata Sandi Wali Kelas</div>
+    <div class="modal-inp-wrap">
+      <input type="password" id="pwInput" class="modal-inp" placeholder="Masukkan kata sandi…"
+             onkeydown="if(event.key==='Enter')tryUnlock()">
+      <button class="modal-eye" onclick="togglePw()" id="eyeBtn" title="Tampilkan">👁</button>
+    </div>
+    <button class="modal-btn" onclick="tryUnlock()">🔓 &nbsp; Masuk ke Data Siswa</button>
+    <div class="modal-err" id="modalErr">⚠ Kata sandi salah. Silakan coba lagi.</div>
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-lines"></div>
+
+  <nav class="nav">
+    <div class="nav-brand">
+      <div class="nav-logo">AK</div>
+      <div class="nav-school">
+        X Akuntansi &amp; Keuangan Lembaga
+        <span>SMK · Portal Akademik Guru</span>
+      </div>
+    </div>
+    <div class="nav-year">TP 2025 / 2026</div>
+  </nav>
+
+  <div class="hero-body">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      Portal Nilai &amp; Akademik
+    </div>
+    <h1 class="hero-title">
+      Nilai &amp; Rekap<br><em>Kelas X AKL</em>
+    </h1>
+    <p class="hero-sub">
+      Akses nilai mata pelajaran, data siswa, dan rekap akademik kelas X Akuntansi &amp; Keuangan Lembaga — tersedia untuk semua guru.
+    </p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-n">12<b>+</b></div>
+        <div class="stat-l">Mata Pelajaran</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n" style="color:var(--gold3);">2</div>
+        <div class="stat-l">Kelompok Mapel</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">2026</div>
+        <div class="stat-l">Tahun Pelajaran</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wave">
+    <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,36 C180,72 360,0 540,36 C720,72 900,0 1080,36 C1260,72 1380,18 1440,36 L1440,72 L0,72 Z" fill="#F4F2EC"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ══ MAIN ══ -->
+<main>
+<div class="wrap">
+
+  <!-- DATA SISWA -->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="sec-tag tag-gold">🗂 Data Administrasi</div>
+      <h2 class="sec-title">Data Siswa Kelas X AKL</h2>
+      <p class="sec-desc">Daftar lengkap siswa, profil, dan data administrasi kelas. Khusus diakses oleh Wali Kelas dengan kata sandi.</p>
+    </div>
+
+    <div class="data-hero">
+      <div class="data-hero-text">
+        <div class="data-hero-badge">🔐 Akses Wali Kelas</div>
+        <div class="data-hero-title">Database Siswa<br>X AKL 2025/2026</div>
+        <div class="data-hero-sub">Berisi data lengkap seluruh siswa kelas X Akuntansi &amp; Keuangan Lembaga — profil, absensi, dan catatan administratif.</div>
+        <button class="btn-data" onclick="openModal()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="12" height="8" rx="2"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>
+          Buka Data Siswa
+        </button>
+        <div class="data-hero-note" style="margin-left:12px;display:inline-flex;">
+          🔑 Memerlukan kata sandi wali kelas
+        </div>
+      </div>
+      <div class="data-hero-visual">
+        <div class="big-icon">🗂️</div>
+        <div class="vis-label">Data Siswa</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NILAI MAPEL -->
+  <section class="sec sec-last">
+    <div class="sec-head">
+      <div class="sec-tag tag-blue">📚 Kurikulum Merdeka</div>
+      <h2 class="sec-title">Nilai Mata Pelajaran</h2>
+      <p class="sec-desc">Klik "Lihat Nilai" untuk mengakses rekap nilai tiap mata pelajaran. Dapat diakses oleh semua guru.</p>
+    </div>
+
+    <!-- GROUP UMUM -->
+    <div class="group-div">
+      <div class="group-div-icon" style="background:var(--sky-bg);">🎓</div>
+      Mata Pelajaran Umum
+    </div>
+    <div class="subj-grid">
+
+      <!-- 1 -->
+      <div class="subj-card card-u">
+        <div class="card-row">
+          <div class="card-num">01</div>
+          <div class="card-info">
+            <div class="card-name">Pendidikan Agama dan Budi Pekerti</div>
+            <div class="card-type">Mapel Umum</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-01: Ganti href="#" dengan link nilai Pendidikan Agama -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="subj-card card-u">
+        <div class="card-row">
+          <div class="card-num">02</div>
+          <div class="card-info">
+            <div class="card-name">Pendidikan Pancasila</div>
+            <div class="card-type">Mapel Umum</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-02: Ganti href="#" dengan link nilai Pendidikan Pancasila -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="subj-card card-u">
+        <div class="card-row">
+          <div class="card-num">03</div>
+          <div class="card-info">
+            <div class="card-name">Bahasa Indonesia</div>
+            <div class="card-type">Mapel Umum</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-03: Ganti href="#" dengan link nilai Bahasa Indonesia -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="subj-card card-u">
+        <div class="card-row">
+          <div class="card-num">04</div>
+          <div class="card-info">
+            <div class="card-name">Pendidikan Jasmani, Olahraga dan Kesehatan</div>
+            <div class="card-type">Mapel Umum</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-04: Ganti href="#" dengan link nilai PJOK -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="subj-card card-u">
+        <div class="card-row">
+          <div class="card-num">05</div>
+          <div class="card-info">
+            <div class="card-name">Sejarah</div>
+            <div class="card-type">Mapel Umum</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-05: Ganti href="#" dengan link nilai Sejarah -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="subj-card card-u">
+        <div class="card-row">
+          <div class="card-num">06</div>
+          <div class="card-info">
+            <div class="card-name">Seni Budaya</div>
+            <div class="card-type">Mapel Umum</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-06: Ganti href="#" dengan link nilai Seni Budaya -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+    </div><!-- /subj-grid umum -->
+
+    <!-- GROUP KEJURUAN -->
+    <div class="group-div">
+      <div class="group-div-icon" style="background:var(--teal-bg);">⚙️</div>
+      Mata Pelajaran Kejuruan
+    </div>
+    <div class="subj-grid">
+
+      <!-- 7 -->
+      <div class="subj-card card-k">
+        <div class="card-row">
+          <div class="card-num">07</div>
+          <div class="card-info">
+            <div class="card-name">Matematika</div>
+            <div class="card-type">Mapel Kejuruan</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-07: Ganti href="#" dengan link nilai Matematika -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+      <!-- 8 — AKTIF -->
+      <div class="subj-card card-k">
+        <div class="card-row">
+          <div class="card-num">08</div>
+          <div class="card-info">
+            <div class="card-name">Bahasa Inggris</div>
+            <div class="card-type">Mapel Kejuruan</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <a href="https://alex-bahy.github.io/daftar-nilai-BING-XAKL/" target="_blank" rel="noopener" class="link-btn link-on">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-on">Aktif ✓</span>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="subj-card card-k">
+        <div class="card-row">
+          <div class="card-num">09</div>
+          <div class="card-info">
+            <div class="card-name">Informatika</div>
+            <div class="card-type">Mapel Kejuruan</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-09: Ganti href="#" dengan link nilai Informatika -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="subj-card card-k">
+        <div class="card-row">
+          <div class="card-num">10</div>
+          <div class="card-info">
+            <div class="card-name">Projek Ilmu Pengetahuan Alam dan Sosial</div>
+            <div class="card-type">Mapel Kejuruan</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-10: Ganti href="#" dengan link nilai P5 / IPAS -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="subj-card card-k">
+        <div class="card-row">
+          <div class="card-num">11</div>
+          <div class="card-info">
+            <div class="card-name">Dasar-dasar Program Keahlian</div>
+            <div class="card-type">Mapel Kejuruan</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-11: Ganti href="#" dengan link nilai Dasar-dasar Program Keahlian -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Lihat Nilai
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+    </div><!-- /subj-grid kejuruan -->
+
+    <!-- GROUP LEDGER -->
+    <div class="group-div">
+      <div class="group-div-icon" style="background:var(--amber-bg);">📒</div>
+      Ledger &amp; Rekap
+    </div>
+    <div class="subj-grid">
+
+      <!-- 12 — LEDGER -->
+      <div class="subj-card card-l">
+        <div class="card-row">
+          <div class="card-num">12</div>
+          <div class="card-info">
+            <div class="card-name">Ledger Nilai — Rekap Semua Mata Pelajaran</div>
+            <div class="card-type">Ledger &amp; Rekap</div>
+          </div>
+        </div>
+        <div class="card-foot">
+          <!-- TODO-LINK-12: Ganti href="#" dengan link Ledger Nilai -->
+          <a href="#" class="link-btn link-off">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+            Buka Ledger
+          </a>
+          <span class="badge badge-off">Segera</span>
+        </div>
+      </div>
+
+    </div><!-- /subj-grid ledger -->
+
+  </section>
+</div><!-- /wrap -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Kelas X Akuntansi &amp; Keuangan Lembaga</strong><br>
+  Portal Akademik Guru · Tahun Pelajaran 2025/2026<br>
+  <span style="font-size:12px;opacity:.5;">Data Siswa — akses terbatas Wali Kelas · Nilai Mapel — terbuka untuk semua guru</span>
+</footer>
+
+<script>
+const PASS = 'SMKBisa';
+const DATA_URL = 'https://alex-bahy.github.io/data-siswa-XAKL-2026/';
+
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  setTimeout(() => document.getElementById('pwInput').focus(), 200);
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('pwInput').value = '';
+  document.getElementById('modalErr').classList.remove('show');
+}
+
+function togglePw() {
+  const inp = document.getElementById('pwInput');
+  const btn = document.getElementById('eyeBtn');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+  btn.textContent = inp.type === 'password' ? '👁' : '🙈';
+}
+
+function tryUnlock() {
+  const val = document.getElementById('pwInput').value;
+  const err = document.getElementById('modalErr');
+  if (val === PASS) {
+    closeModal();
+    window.open(DATA_URL, '_blank');
+  } else {
+    err.classList.remove('show');
+    void err.offsetWidth;
+    err.classList.add('show');
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwInput').focus();
+  }
+}
+
+// Close on backdrop click
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// Card entrance animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.subj-card').forEach((c, i) => {
+  c.style.opacity = '0';
+  c.style.transform = 'translateY(18px)';
+  c.style.transition = `opacity .4s ease ${i * .055}s, transform .4s ease ${i * .055}s, box-shadow .2s, border-color .2s`;
+  observer.observe(c);
+});
+</script>
+</body>
+</html>
