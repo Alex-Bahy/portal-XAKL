@@ -40,6 +40,7 @@ body {
   min-height: 100vh;
 }
 
+/* ─── HERO ─── */
 .hero {
   background: var(--navy);
   position: relative;
@@ -143,6 +144,7 @@ body {
 }
 .sec-desc { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 520px; }
 
+/* ─── DATA HERO ─── */
 .data-hero {
   background: linear-gradient(130deg, var(--navy2) 0%, var(--navy3) 60%, #253F85 100%);
   border-radius: var(--r2);
@@ -203,11 +205,11 @@ body {
   text-decoration: none; border: none; cursor: pointer;
   transition: transform .15s, opacity .15s;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  margin-top: 0;
 }
 .btn-data:hover { transform: translateY(-2px); opacity: .92; }
 .btn-data svg { width: 14px; height: 14px; flex-shrink: 0; }
 
+/* ─── GROUP DIVIDER ─── */
 .group-div {
   display: flex; align-items: center; gap: 12px;
   font-size: 11px; font-weight: 700; letter-spacing: .10em;
@@ -221,6 +223,7 @@ body {
   font-size: 13px; flex-shrink: 0;
 }
 
+/* ─── SUBJECT GRID ─── */
 .subj-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
@@ -268,6 +271,7 @@ body {
 
 .card-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 
+/* ─── LINK BTN ─── */
 .link-btn {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 8px 15px; border-radius: 9px;
@@ -285,10 +289,102 @@ body {
   font-size: 10px; font-weight: 700; padding: 3px 9px;
   border-radius: 7px; letter-spacing: .04em; text-transform: uppercase;
 }
-.badge-on  { background: #DCFCE7; color: #166534; }
-.badge-off { background: #FEF3C7; color: #92400E; }
+.badge-on   { background: #DCFCE7; color: #166534; }
+.badge-off  { background: #FEF3C7; color: #92400E; }
 .badge-todo { background: #FEE2E2; color: #991B1B; }
 
+/* ─── EDIT LINK FEATURE ─── */
+.card-edit-btn {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--sky-bg); border: 1px solid rgba(26,111,181,.15);
+  color: var(--sky); font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; opacity: 0;
+  transition: opacity .2s, transform .15s, background .15s;
+  z-index: 5;
+}
+.subj-card:hover .card-edit-btn { opacity: 1; }
+.card-edit-btn:hover { transform: scale(1.1); background: var(--sky); color: #fff; }
+
+/* edit panel */
+.edit-panel {
+  display: none;
+  flex-direction: column; gap: 8px;
+  background: var(--sky-bg);
+  border: 1.5px solid rgba(26,111,181,.20);
+  border-radius: 10px;
+  padding: 12px 14px;
+  animation: slideDown .2s ease;
+}
+.edit-panel.open { display: flex; }
+
+@keyframes slideDown {
+  from { opacity:0; transform:translateY(-6px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.edit-panel label {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--sky);
+}
+.edit-panel-row { display: flex; gap: 7px; }
+.edit-inp {
+  flex: 1;
+  border: 1.5px solid rgba(26,111,181,.25);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px; font-weight: 500;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--navy);
+  outline: none;
+  background: #fff;
+  transition: border-color .2s;
+}
+.edit-inp:focus { border-color: var(--sky); }
+.edit-inp::placeholder { color: #AAA; }
+
+.edit-save-btn {
+  padding: 8px 14px; border-radius: 8px;
+  background: var(--navy); color: #fff;
+  font-size: 12px; font-weight: 700;
+  border: none; cursor: pointer; white-space: nowrap;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: opacity .15s, transform .15s;
+}
+.edit-save-btn:hover { opacity:.88; transform: translateY(-1px); }
+
+.edit-clear-btn {
+  padding: 8px 10px; border-radius: 8px;
+  background: #FEE2E2; color: #991B1B;
+  font-size: 12px; font-weight: 700;
+  border: none; cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: opacity .15s;
+}
+.edit-clear-btn:hover { opacity:.8; }
+
+.edit-hint {
+  font-size: 10px; color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ─── TOAST ─── */
+#toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--navy); color: #fff;
+  padding: 11px 22px; border-radius: 40px;
+  font-size: 13px; font-weight: 600;
+  box-shadow: 0 8px 32px rgba(0,0,0,.25);
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s, transform .3s;
+  z-index: 500; white-space: nowrap;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ─── MODAL ─── */
 #modal {
   position: fixed; inset: 0; z-index: 200;
   background: rgba(8,14,30,.72);
@@ -395,10 +491,14 @@ footer strong { color: rgba(255,255,255,.60); }
   .data-hero { grid-template-columns: 1fr; }
   .data-hero-visual { display: none; }
   footer { padding: 28px 20px; }
+  .card-edit-btn { opacity: 1; }
 }
 </style>
 </head>
 <body>
+
+<!-- TOAST -->
+<div id="toast"></div>
 
 <!-- MODAL PASSWORD DATA SISWA -->
 <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -484,7 +584,7 @@ footer strong { color: rgba(255,255,255,.60); }
       <div class="data-hero-text">
         <div class="data-hero-badge">🔐 Input Data — Wali Kelas</div>
         <div class="data-hero-title">Database Siswa<br>X AKL 2025/2026</div>
-        <div class="data-hero-sub">Wali Kelas dapat menginput dan memperbarui data lengkap seluruh siswa — termasuk profil, absensi, dan catatan administratif.</div>
+        <div class="data-hero-sub">Wali Kelas dapat menginput dan memperbarui data lengkap seluruh siswa — termasuk profil, NIS, NISN, JK, Agama.</div>
         <button class="btn-data" onclick="openModal()">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="12" height="8" rx="2"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>
           Buka Data Siswa
@@ -505,7 +605,10 @@ footer strong { color: rgba(255,255,255,.60); }
     <div class="sec-head">
       <div class="sec-tag tag-blue">📚 Kurikulum Merdeka</div>
       <h2 class="sec-title">Nilai Mata Pelajaran</h2>
-      <p class="sec-desc">Setiap guru dapat membuka halaman nilai sesuai mata pelajaran yang diampu untuk menginput dan memantau rekap nilai siswa.</p>
+      <p class="sec-desc">
+        Setiap guru dapat membuka halaman nilai sesuai mata pelajaran yang diampu.
+        <strong style="color:var(--sky)">Klik ✏️ pada kartu untuk menambahkan link GitHub Pages mapel.</strong>
+      </p>
     </div>
 
     <!-- GROUP UMUM -->
@@ -515,7 +618,8 @@ footer strong { color: rgba(255,255,255,.60); }
     </div>
     <div class="subj-grid">
 
-      <div class="subj-card card-u">
+      <div class="subj-card card-u" id="card-01">
+        <button class="card-edit-btn" onclick="toggleEdit('01')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">01</div>
           <div class="card-info">
@@ -523,16 +627,26 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Umum</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-01">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-01" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('01')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('01')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="https://alex-bahy.github.io/Nilai-Agama-XAKL-2026/" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-01" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-on">Aktif✓</span>
+          <span class="badge badge-off" id="badge-01">Segera</span>
         </div>
       </div>
 
-      <div class="subj-card card-u">
+      <div class="subj-card card-u" id="card-02">
+        <button class="card-edit-btn" onclick="toggleEdit('02')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">02</div>
           <div class="card-info">
@@ -540,16 +654,26 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Umum</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-02">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-02" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('02')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('02')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="#" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-02" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-02">Segera</span>
         </div>
       </div>
 
-      <div class="subj-card card-u">
+      <div class="subj-card card-u" id="card-03">
+        <button class="card-edit-btn" onclick="toggleEdit('03')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">03</div>
           <div class="card-info">
@@ -557,16 +681,26 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Umum</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-03">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-03" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('03')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('03')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="#" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-03" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-03">Segera</span>
         </div>
       </div>
 
-      <div class="subj-card card-u">
+      <div class="subj-card card-u" id="card-04">
+        <button class="card-edit-btn" onclick="toggleEdit('04')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">04</div>
           <div class="card-info">
@@ -574,16 +708,26 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Umum</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-04">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-04" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('04')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('04')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="#" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-04" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-04">Segera</span>
         </div>
       </div>
 
-      <div class="subj-card card-u">
+      <div class="subj-card card-u" id="card-05">
+        <button class="card-edit-btn" onclick="toggleEdit('05')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">05</div>
           <div class="card-info">
@@ -591,16 +735,26 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Umum</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-05">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-05" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('05')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('05')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="#" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-05" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-05">Segera</span>
         </div>
       </div>
 
-      <div class="subj-card card-u">
+      <div class="subj-card card-u" id="card-06">
+        <button class="card-edit-btn" onclick="toggleEdit('06')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">06</div>
           <div class="card-info">
@@ -608,12 +762,21 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Umum</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-06">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-06" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('06')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('06')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="#" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-06" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-06">Segera</span>
         </div>
       </div>
 
@@ -626,7 +789,8 @@ footer strong { color: rgba(255,255,255,.60); }
     </div>
     <div class="subj-grid">
 
-      <div class="subj-card card-k">
+      <div class="subj-card card-k" id="card-07">
+        <button class="card-edit-btn" onclick="toggleEdit('07')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">07</div>
           <div class="card-info">
@@ -634,17 +798,26 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Kejuruan</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-07">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-07" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('07')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('07')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="#" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-07" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-07">Segera</span>
         </div>
       </div>
 
-      <!-- 08 — AKTIF -->
-      <div class="subj-card card-k">
+      <div class="subj-card card-k" id="card-08">
+        <button class="card-edit-btn" onclick="toggleEdit('08')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">08</div>
           <div class="card-info">
@@ -652,16 +825,26 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Kejuruan</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-08">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-08" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('08')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('08')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="https://alex-bahy.github.io/daftar-nilai-BING-XAKL/" target="_blank" rel="noopener" class="link-btn link-on">
+          <a href="https://alex-bahy.github.io/daftar-nilai-BING-XAKL/" class="link-btn link-on" id="btn-08" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-on">Aktif ✓</span>
+          <span class="badge badge-on" id="badge-08">Aktif ✓</span>
         </div>
       </div>
 
-      <div class="subj-card card-k">
+      <div class="subj-card card-k" id="card-09">
+        <button class="card-edit-btn" onclick="toggleEdit('09')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">09</div>
           <div class="card-info">
@@ -669,16 +852,26 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Kejuruan</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-09">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-09" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('09')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('09')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="#" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-09" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-09">Segera</span>
         </div>
       </div>
 
-      <div class="subj-card card-k">
+      <div class="subj-card card-k" id="card-10">
+        <button class="card-edit-btn" onclick="toggleEdit('10')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">10</div>
           <div class="card-info">
@@ -686,16 +879,26 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Kejuruan</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-10">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-10" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('10')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('10')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="#" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-10" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-10">Segera</span>
         </div>
       </div>
 
-      <div class="subj-card card-k">
+      <div class="subj-card card-k" id="card-11">
+        <button class="card-edit-btn" onclick="toggleEdit('11')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num">11</div>
           <div class="card-info">
@@ -703,25 +906,35 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type">Mapel Kejuruan</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-11">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-11" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('11')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('11')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="#" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-11" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-11">Segera</span>
         </div>
       </div>
 
     </div>
 
-<!-- GROUP MULOK -->
+    <!-- GROUP MULOK -->
     <div class="group-div">
       <div class="group-div-icon" style="background:#EFF6EF;">🌿</div>
       Mata Pelajaran Muatan Lokal
     </div>
     <div class="subj-grid">
 
-      <div class="subj-card card-k">
+      <div class="subj-card card-k" id="card-12">
+        <button class="card-edit-btn" onclick="toggleEdit('12')" title="Edit Link">✏️</button>
         <div class="card-row">
           <div class="card-num" style="background:#EFF6EF;color:#2D6A4F;">12</div>
           <div class="card-info">
@@ -729,16 +942,26 @@ footer strong { color: rgba(255,255,255,.60); }
             <div class="card-type" style="color:#2D6A4F;">Muatan Lokal</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-12">
+          <label>🔗 Link GitHub Pages Mapel Ini</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-12" placeholder="https://username.github.io/nama-repo/">
+            <button class="edit-save-btn" onclick="saveLink('12')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('12')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages, tombol "Input Nilai" akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="#" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-12" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Input Nilai
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-12">Segera</span>
         </div>
       </div>
 
-      
+    </div>
+
     <!-- GROUP LEDGER -->
     <div class="group-div">
       <div class="group-div-icon" style="background:var(--amber-bg);">📒</div>
@@ -746,20 +969,30 @@ footer strong { color: rgba(255,255,255,.60); }
     </div>
     <div class="subj-grid">
 
-      <div class="subj-card card-l">
+      <div class="subj-card card-l" id="card-L1">
+        <button class="card-edit-btn" onclick="toggleEdit('L1')" title="Edit Link">✏️</button>
         <div class="card-row">
-          <div class="card-num">12</div>
+          <div class="card-num">📒</div>
           <div class="card-info">
             <div class="card-name">Ledger Nilai — Rekap Semua Mata Pelajaran</div>
             <div class="card-type">Ledger &amp; Rekap</div>
           </div>
         </div>
+        <div class="edit-panel" id="edit-L1">
+          <label>🔗 Link GitHub Pages Ledger</label>
+          <div class="edit-panel-row">
+            <input type="url" class="edit-inp" id="inp-L1" placeholder="https://username.github.io/ledger-XAKL/">
+            <button class="edit-save-btn" onclick="saveLink('L1')">Simpan</button>
+            <button class="edit-clear-btn" onclick="clearLink('L1')" title="Hapus link">✕</button>
+          </div>
+          <div class="edit-hint">Paste link GitHub Pages ledger, tombol akan langsung aktif.</div>
+        </div>
         <div class="card-foot">
-          <a href="https://alex-bahy.github.io/ledger-XAKL/" class="link-btn link-off">
+          <a href="#" class="link-btn link-off" id="btn-L1" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
             Buka Ledger
           </a>
-          <span class="badge badge-off">Segera</span>
+          <span class="badge badge-off" id="badge-L1">Segera</span>
         </div>
       </div>
 
@@ -777,63 +1010,144 @@ footer strong { color: rgba(255,255,255,.60); }
 </footer>
 
 <script>
-const PASS = 'SMKBisa';
+/* ─── PASSWORD / MODAL ─── */
+const PASS     = 'SMKBisa';
 const DATA_URL = 'https://alex-bahy.github.io/data-siswa-XAKL-2026/';
 
-function openModal() {
-  document.getElementById('modal').classList.add('open');
-  setTimeout(() => document.getElementById('pwInput').focus(), 200);
+function openModal()  { document.getElementById('modal').classList.add('open'); setTimeout(()=>document.getElementById('pwInput').focus(),200); }
+function closeModal() { document.getElementById('modal').classList.remove('open'); document.getElementById('pwInput').value=''; document.getElementById('modalErr').classList.remove('show'); }
+function togglePw()   { const i=document.getElementById('pwInput'),b=document.getElementById('eyeBtn'); i.type=i.type==='password'?'text':'password'; b.textContent=i.type==='password'?'👁':'🙈'; }
+function tryUnlock()  {
+  const val=document.getElementById('pwInput').value, err=document.getElementById('modalErr');
+  if(val===PASS){ closeModal(); window.open(DATA_URL,'_blank'); }
+  else { err.classList.remove('show'); void err.offsetWidth; err.classList.add('show'); document.getElementById('pwInput').value=''; document.getElementById('pwInput').focus(); }
+}
+document.getElementById('modal').addEventListener('click',function(e){ if(e.target===this) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+/* ─── TOAST ─── */
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
 }
 
-function closeModal() {
-  document.getElementById('modal').classList.remove('open');
-  document.getElementById('pwInput').value = '';
-  document.getElementById('modalErr').classList.remove('show');
+/* ─── EDIT LINK SYSTEM ─── */
+const STORAGE_KEY = 'xakl_mapel_links_v1';
+
+// Default links hardcoded (already active ones)
+const DEFAULT_LINKS = {
+  '08': 'https://alex-bahy.github.io/daftar-nilai-BING-XAKL/'
+};
+
+function loadLinks(){
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); } catch(e){ return {}; }
+}
+function saveLinks(data){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e){}
 }
 
-function togglePw() {
-  const inp = document.getElementById('pwInput');
-  const btn = document.getElementById('eyeBtn');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
-  btn.textContent = inp.type === 'password' ? '👁' : '🙈';
-}
+function applyLink(id, url){
+  const btn   = document.getElementById('btn-'+id);
+  const badge = document.getElementById('badge-'+id);
+  if(!btn||!badge) return;
 
-function tryUnlock() {
-  const val = document.getElementById('pwInput').value;
-  const err = document.getElementById('modalErr');
-  if (val === PASS) {
-    closeModal();
-    window.open(DATA_URL, '_blank');
+  if(url){
+    btn.href = url;
+    btn.classList.replace('link-off','link-on');
+    btn.style.pointerEvents = '';
+    btn.style.cursor = '';
+    badge.textContent = 'Aktif ✓';
+    badge.className = 'badge badge-on';
   } else {
-    err.classList.remove('show');
-    void err.offsetWidth;
-    err.classList.add('show');
-    document.getElementById('pwInput').value = '';
-    document.getElementById('pwInput').focus();
+    btn.href = '#';
+    btn.classList.replace('link-on','link-off');
+    btn.style.pointerEvents = 'none';
+    btn.style.cursor = 'not-allowed';
+    badge.textContent = 'Segera';
+    badge.className = 'badge badge-off';
   }
 }
 
-document.getElementById('modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
+function toggleEdit(id){
+  const panel = document.getElementById('edit-'+id);
+  const inp   = document.getElementById('inp-'+id);
+  const isOpen = panel.classList.contains('open');
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal();
-});
+  // Close all other panels
+  document.querySelectorAll('.edit-panel.open').forEach(p=>p.classList.remove('open'));
 
+  if(!isOpen){
+    panel.classList.add('open');
+    // Pre-fill with current saved URL
+    const links = loadLinks();
+    const stored = links[id] || DEFAULT_LINKS[id] || '';
+    inp.value = stored;
+    setTimeout(()=>{ inp.focus(); inp.select(); }, 60);
+  }
+
+  // Allow Enter key to save
+  inp.onkeydown = (e)=>{ if(e.key==='Enter') saveLink(id); if(e.key==='Escape') panel.classList.remove('open'); };
+}
+
+function saveLink(id){
+  const inp = document.getElementById('inp-'+id);
+  let url = inp.value.trim();
+
+  if(!url){ showToast('⚠️ Link tidak boleh kosong. Gunakan tombol ✕ untuk menghapus.'); return; }
+  if(!url.startsWith('http')){ url = 'https://' + url; inp.value = url; }
+
+  const links = loadLinks();
+  links[id] = url;
+  saveLinks(links);
+  applyLink(id, url);
+
+  document.getElementById('edit-'+id).classList.remove('open');
+  showToast('✅ Link berhasil disimpan & tombol aktif!');
+}
+
+function clearLink(id){
+  const links = loadLinks();
+  delete links[id];
+  saveLinks(links);
+
+  // Only reset to off if it's not a hardcoded default
+  if(!DEFAULT_LINKS[id]){
+    applyLink(id, null);
+  } else {
+    applyLink(id, DEFAULT_LINKS[id]);
+    document.getElementById('inp-'+id).value = DEFAULT_LINKS[id];
+  }
+
+  document.getElementById('edit-'+id).classList.remove('open');
+  showToast('🗑️ Link dihapus.');
+}
+
+/* ─── INIT: apply saved links on page load ─── */
+(function init(){
+  const links = loadLinks();
+  // Apply defaults first
+  Object.entries(DEFAULT_LINKS).forEach(([id, url])=> applyLink(id, url));
+  // Override with saved
+  Object.entries(links).forEach(([id, url])=> applyLink(id, url));
+})();
+
+/* ─── SCROLL ANIMATION ─── */
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
     }
   });
 }, { threshold: 0.08 });
 
-document.querySelectorAll('.subj-card').forEach((c, i) => {
-  c.style.opacity = '0';
-  c.style.transform = 'translateY(18px)';
-  c.style.transition = `opacity .4s ease ${i * .055}s, transform .4s ease ${i * .055}s, box-shadow .2s, border-color .2s`;
+document.querySelectorAll('.subj-card').forEach((c,i)=>{
+  c.style.opacity='0';
+  c.style.transform='translateY(18px)';
+  c.style.transition=`opacity .4s ease ${i*.055}s, transform .4s ease ${i*.055}s, box-shadow .2s, border-color .2s`;
   observer.observe(c);
 });
 </script>
