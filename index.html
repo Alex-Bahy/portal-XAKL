@@ -317,7 +317,23 @@ footer strong{color:rgba(255,255,255,.60);}
 const PASS='SMKBisa';
 const DATA_URL='https://alex-bahy.github.io/data-siswa-XAKL-2026/';
 const SK='xakl_mapel_links_v2';
-const DEFAULTS={'08':'https://alex-bahy.github.io/daftar-nilai-BING-XAKL/'};
+
+/*
+  ╔══════════════════════════════════════════════════════════╗
+  ║  LINK PERMANEN — berlaku di SEMUA perangkat              ║
+  ║  Tambahkan link mapel di sini agar tidak hilang          ║
+  ║  saat buka di HP/laptop/tablet lain.                     ║
+  ║                                                          ║
+  ║  Format:  'ID_MAPEL' : 'https://link-github-pages/'      ║
+  ╚══════════════════════════════════════════════════════════╝
+*/
+const DEFAULTS={
+  '08':'https://alex-bahy.github.io/daftar-nilai-BING-XAKL/',
+  /* Tambahkan link mapel lain di bawah ini, contoh:
+  '01':'https://username.github.io/nilai-agama/',
+  '07':'https://username.github.io/nilai-matematika/',
+  */
+};
 
 const SUBJECTS={
   umum:[
@@ -402,7 +418,18 @@ function saveLink(id){
   if(!u.startsWith('http')){u='https://'+u;i.value=u;}
   const l=loadLinks();l[id]=u;saveLinks(l);applyLink(id,u);
   document.getElementById('edit-'+id).classList.remove('open');
-  showToast('✅ Link berhasil disimpan!');
+  showPermanentInfo(id,u);
+}
+
+function showPermanentInfo(id,url){
+  const old=document.getElementById('perm-banner');if(old)old.remove();
+  const snip="'"+id+"':'"+url+"',";
+  const banner=document.createElement('div');
+  banner.id='perm-banner';
+  banner.style.cssText='position:fixed;top:72px;left:50%;transform:translateX(-50%);z-index:400;background:#fff;border:1.5px solid #162B5C;border-radius:14px;padding:14px 18px;max-width:92vw;width:480px;box-shadow:0 8px 32px rgba(12,26,58,.18);font-family:Plus Jakarta Sans,sans-serif;';
+  banner.innerHTML='<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px;"><div style="font-size:13px;font-weight:700;color:#0C1A3A;">⚠️ Link aktif di perangkat ini saja</div><button onclick="document.getElementById(\'perm-banner\').remove()" style="background:none;border:none;cursor:pointer;font-size:16px;color:#999;flex-shrink:0;line-height:1;">✕</button></div><div style="font-size:12px;color:#6474A0;line-height:1.6;margin-bottom:10px;">Agar link aktif di <strong style="color:#0C1A3A">semua HP/laptop</strong>, tambahkan baris ini ke dalam file HTML di bagian <code style="background:#F0F4FF;padding:1px 5px;border-radius:4px;font-size:11px;">DEFAULTS</code>:</div><div style="display:flex;align-items:center;gap:8px;"><code id="snip-code" style="flex:1;background:#F0F4FF;border:1px solid #C8D6F0;border-radius:8px;padding:8px 12px;font-size:12px;color:#162B5C;word-break:break-all;">'+snip+'</code><button onclick="navigator.clipboard.writeText(document.getElementById(\'snip-code\').textContent).then(()=>showToast(\'✅ Disalin!\'))" style="background:#0C1A3A;color:#fff;border:none;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;">Salin</button></div>';
+  document.body.appendChild(banner);
+  setTimeout(()=>{if(banner.parentNode)banner.remove();},14000);
 }
 
 function clearLink(id){
